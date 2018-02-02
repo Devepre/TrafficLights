@@ -5,39 +5,18 @@
 
 @synthesize name;
 @synthesize nightMode;
-@synthesize states;
+@synthesize statesEnum;
 @synthesize currentStateNumber;
 @synthesize currentTicks;
 @synthesize worldDelegate;
 
 //designated initializer
-- (instancetype)initWithLightsArray:(NSArray<DELLightState *> *)lightsArray {
+- (instancetype)initWithEnumArray:(NSArray *)array {
     self = [super init];
     if (self) {
-        [self setStates:lightsArray];
+        [self setStatesEnum:array];
     }
     return self;
-}
-
-- (instancetype)init {
-    self = [super init];
-    if (self) {
-        [self setStates:[self createDefaultLightStates]];
-    }
-    return self;
-}
-
-- (NSArray<DELLightState *> *)createDefaultLightStates {
-    DELLightState *stateOne = [[DELLightState alloc] initWithColorName:@"Red" andInterval:@9];
-    DELLightState *stateTwo = [[DELLightState alloc] initWithColorName:@"RedYellow" andInterval:@1];
-    DELLightState *stateThree = [[DELLightState alloc] initWithColorName:@"Green" andInterval:@8];
-    DELLightState *stateFour = [[DELLightState alloc] initWithColorName:@"BlinkingGreen" andInterval:@1];
-    DELLightState *stateFive = [[DELLightState alloc] initWithColorName:@"Yellow" andInterval:@1];
-    DELLightState *stateSix = [[DELLightState alloc] initWithColorName:@"Red" andInterval:@5];
-
-    NSArray<DELLightState *> *lightStateArray = [[NSArray alloc] initWithObjects:stateOne, stateTwo, stateThree, stateFour, stateFive, stateSix, nil];
-    
-    return lightStateArray;
 }
 
 - (void)changeStatusToNext {
@@ -49,7 +28,7 @@
         
     }
     
-    NSUInteger maxStateNumber = [[self states] count];
+    NSUInteger maxStateNumber = [[self statesEnum] count];
     maxStateNumber--;
     if ([self currentStateNumber] <= maxStateNumber) {
         if ([self currentStateNumber] == maxStateNumber) {
@@ -78,12 +57,13 @@
 }
 
 - (void)recieveOneTick {
+    DebugLog(@"calling: %s", __func__);
     self.currentTicks++;
 //    printf("\n%s\n", [self.name UTF8String]);
 //    printf("CurrTick: %lu\n", self.currentTicks);
-    
-    NSNumber *num = [[[self states] objectAtIndex:self.currentStateNumber] interval];
 //    printf("TicksToDo: %s\n", [[num stringValue] UTF8String]);
+
+    NSNumber *num = [[[self statesEnum] objectAtIndex:self.currentStateNumber] interval];
     if ([num integerValue] == self.currentTicks) {
         self.currentTicks = 0;
         [self changeStatusToNext];
@@ -94,12 +74,29 @@
     //TODO
 }
 
+- (NSString*) lightsColorsToString:(LightColor)notificationTypes {
+    NSArray *remoteNotificationTypeStrs = @[@"off", @"blinking", @"red", @"green", @"yellow", @"custom"];
+    NSMutableArray *enabledNotificationTypes = [[NSMutableArray alloc] init];
+    
+    for (NSUInteger i = 0; i < [remoteNotificationTypeStrs count]; i++) {
+        NSUInteger enumBitValueToCheck = 1 << i;
+        if (notificationTypes & enumBitValueToCheck)
+            [enabledNotificationTypes addObject:[remoteNotificationTypeStrs objectAtIndex:i]];
+    }
+    
+    NSString *result = enabledNotificationTypes.count > 0 ?
+    [enabledNotificationTypes componentsJoinedByString:@":"] :
+    @"no options";
+    
+    return result;
+}
+
 - (NSString *)description {
     NSString *result;
-    NSString *currentState = [[[self states] objectAtIndex:[self currentStateNumber]] colorName];
+    LightColor color = [[[self statesEnum] objectAtIndex:[self currentStateNumber]] color];
+    NSString *currentState = [self lightsColorsToString:color];
     result = [NSString stringWithFormat:@"%@ -> %@", [self name], currentState];
-    //    result = [NSString stringWithFormat:@"<<%@>> ligth | nigth mode: <%hhd>", [self class], [self nightMode]]
-    //    result = [NSString stringWithFormat:@"\n<<%@>> light\tnigth mode: <%hhd>\tStates:%@\tCurrent state: %@", [self class], [self nightMode], [self states], currentState];
+    
     return result;
     
 }

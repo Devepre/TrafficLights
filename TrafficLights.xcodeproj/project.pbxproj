@@ -35,6 +35,7 @@
 		CE5D8B6C2020D2BE007ED267 /* DELControllerWorld.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DELControllerWorld.m; sourceTree = "<group>"; };
 		CE5D8B712021FA50007ED267 /* DELLightState.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DELLightState.h; sourceTree = "<group>"; };
 		CE5D8B722021FA50007ED267 /* DELLightState.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DELLightState.m; sourceTree = "<group>"; };
+		CEDEAA57202499350029E894 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +68,7 @@
 		CE5D8B552020B288007ED267 /* TrafficLights */ = {
 			isa = PBXGroup;
 			children = (
+				CE5D8B642020BB35007ED267 /* DELLightProtocol.h */,
 				CE5D8B562020B288007ED267 /* main.m */,
 				CE5D8B712021FA50007ED267 /* DELLightState.h */,
 				CE5D8B722021FA50007ED267 /* DELLightState.m */,
@@ -74,7 +76,7 @@
 				CE5D8B662020BB85007ED267 /* DELLight.m */,
 				CE5D8B6B2020D2BE007ED267 /* DELControllerWorld.h */,
 				CE5D8B6C2020D2BE007ED267 /* DELControllerWorld.m */,
-				CE5D8B642020BB35007ED267 /* DELLightProtocol.h */,
+				CEDEAA57202499350029E894 /* PrefixHeader.pch */,
 			);
 			path = TrafficLights;
 			sourceTree = "<group>";
@@ -184,10 +186,8 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
+				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/PrefixHeader.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -237,6 +237,8 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/PrefixHeader.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;

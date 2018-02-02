@@ -2,10 +2,10 @@
 
 @implementation DELLightState
 
-- (instancetype)initWithColorName:(NSString *)colorName andInterval:(NSNumber *)interval {
+- (instancetype)initWithColorFromEnum:(LightColor)color andInterval:(NSNumber *)interval {
     self = [super init];
     if (self) {
-        _colorName = colorName;
+        _color = color;
         _interval = interval;
     }
     return self;

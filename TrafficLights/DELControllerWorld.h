@@ -7,7 +7,6 @@
 @property (strong, nonatomic) NSMutableArray<DELLight *> *lightsArray;
 
 - (void)start;
-- (void)createDefaultLights;
 - (void)doUpdateView;
 
 @end
