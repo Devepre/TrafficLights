@@ -1,12 +1,7 @@
 #import <Foundation/Foundation.h>
 #import "DELLight.h"
+#import "DELControllerProtocol.h"
 
-@interface DELControllerWorld : NSObject
-
-@property id delegate;
-@property (strong, nonatomic) NSMutableArray<DELLight *> *lightsArray;
-
-- (void)start;
-- (void)doUpdateView;
+@interface DELControllerWorld : NSObject<DELControllerProtocol>
 
 @end

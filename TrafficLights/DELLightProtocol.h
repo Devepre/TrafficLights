@@ -5,12 +5,12 @@
 
 @property (strong, nonatomic) NSString *name;
 @property (assign, nonatomic) BOOL nightMode;
-@property (strong, nonatomic) NSArray<DELLightState *> *statesEnum;
+@property (strong, nonatomic) NSArray<DELLightState *> *lightStates;
 @property (assign, nonatomic) NSUInteger currentStateNumber;
 @property (assign, nonatomic) NSUInteger currentTicks;
 @property (weak, nonatomic) id worldDelegate;
 
-- (instancetype)initWithEnumArray:(NSArray *)array;
+- (instancetype)initWithLightsArray:(NSArray *)array;
 - (void)changeStatusToNext;
 - (void)recieveOneTick;
 - (void)switchNightMode;

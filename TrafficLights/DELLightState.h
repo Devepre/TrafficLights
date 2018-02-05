@@ -12,10 +12,9 @@ typedef NS_OPTIONS(NSUInteger, LightColor) {
     //placeholder
 };
 
-@property (strong, nonatomic) NSString *colorName;
 @property (strong, nonatomic) NSNumber *interval;
 @property (assign, nonatomic) LightColor color;
 
-- (instancetype)initWithColorFromEnum:(LightColor)color andInterval:(NSNumber *)interval;
+- (instancetype)initWithColor:(LightColor)color andInterval:(NSNumber *)interval;
 
 @end
