@@ -11,10 +11,19 @@
 @synthesize currentTicks;
 @synthesize worldDelegate;
 
-//designated initializer
-- (instancetype)initWithLightsArray:(NSArray *)array {
+- (instancetype)init
+{
     self = [super init];
     if (self) {
+        self.lightStates = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
+
+- (instancetype)initWithLightsArray:(NSMutableArray *)array {
+    self = [super init];
+    if (self) {
+        self = [self init];
         [self setLightStates:array];
     }
     return self;

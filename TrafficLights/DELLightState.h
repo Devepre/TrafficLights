@@ -15,6 +15,6 @@ typedef NS_OPTIONS(NSUInteger, LightColor) {
 @property (strong, nonatomic) NSNumber *interval;
 @property (assign, nonatomic) LightColor color;
 
-- (instancetype)initWithColor:(LightColor)color andInterval:(NSNumber *)interval;
+- (instancetype)initWithInterval:(NSNumber *)interval andColor:(LightColor)color;
 
 @end
