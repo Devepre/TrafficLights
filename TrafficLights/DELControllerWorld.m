@@ -21,42 +21,37 @@
     [[NSRunLoop currentRunLoop] run];
 }
 
-- (void)addToLight:(DELLight *)light interval:(NSUInteger)interval andLightStateColor:(LightColor)color  {
-    DELLightState *state = [[DELLightState alloc] initWithInterval:[NSNumber numberWithUnsignedInteger:interval] andColor:color];
-    [[light lightStates] addObject:state];
-}
-
 - (void)createDefaultLights {
     //First Light
     DELLight *lightRoadOne = [[DELLight alloc] init];
     [lightRoadOne setName:@"#1"];
     [lightRoadOne setWorldDelegate:self];
-    [self addToLight:lightRoadOne interval:9 andLightStateColor:LightColorRed];
-    [self addToLight:lightRoadOne interval:1 andLightStateColor:LightColorRed         | LightColorYellow];
-    [self addToLight:lightRoadOne interval:8 andLightStateColor:LightColorLGreen];
-    [self addToLight:lightRoadOne interval:1 andLightStateColor:LightColorLGreen      | LightColorBlinking];
-    [self addToLight:lightRoadOne interval:1 andLightStateColor:LightColorYellow];
-    [self addToLight:lightRoadOne interval:5 andLightStateColor:LightColorRed];
+    [self addStateToLight:lightRoadOne interval:9 andLightStateColor:LightColorRed];
+    [self addStateToLight:lightRoadOne interval:1 andLightStateColor:LightColorRed         | LightColorYellow];
+    [self addStateToLight:lightRoadOne interval:8 andLightStateColor:LightColorLGreen];
+    [self addStateToLight:lightRoadOne interval:1 andLightStateColor:LightColorLGreen      | LightColorBlinking];
+    [self addStateToLight:lightRoadOne interval:1 andLightStateColor:LightColorYellow];
+    [self addStateToLight:lightRoadOne interval:5 andLightStateColor:LightColorRed];
     
     //Second Light
     DELLight *lightRoadTwo = [[DELLight alloc] init];
     [lightRoadTwo setName:@"#1"];
     [lightRoadTwo setWorldDelegate:self];
-    [self addToLight:lightRoadTwo interval:8 andLightStateColor:LightColorLGreen];
-    [self addToLight:lightRoadTwo interval:1 andLightStateColor:LightColorLGreen        | LightColorBlinking];
-    [self addToLight:lightRoadTwo interval:1 andLightStateColor:LightColorYellow];
-    [self addToLight:lightRoadTwo interval:9 andLightStateColor:LightColorRed];
-    [self addToLight:lightRoadTwo interval:1 andLightStateColor:LightColorRed           | LightColorYellow];
-    [self addToLight:lightRoadTwo interval:4 andLightStateColor:LightColorRed];
-    [self addToLight:lightRoadTwo interval:1 andLightStateColor:LightColorRed           | LightColorYellow];
+    [self addStateToLight:lightRoadTwo interval:8 andLightStateColor:LightColorLGreen];
+    [self addStateToLight:lightRoadTwo interval:1 andLightStateColor:LightColorLGreen        | LightColorBlinking];
+    [self addStateToLight:lightRoadTwo interval:1 andLightStateColor:LightColorYellow];
+    [self addStateToLight:lightRoadTwo interval:9 andLightStateColor:LightColorRed];
+    [self addStateToLight:lightRoadTwo interval:1 andLightStateColor:LightColorRed           | LightColorYellow];
+    [self addStateToLight:lightRoadTwo interval:4 andLightStateColor:LightColorRed];
+    [self addStateToLight:lightRoadTwo interval:1 andLightStateColor:LightColorRed           | LightColorYellow];
     
-    //First Pedestrean Light
+    //First Pedestrian Light
     DELLight *lightPedestrianOne = [[DELLight alloc] init];
     [lightPedestrianOne setName:@"#3 Pedestrian"];
     [lightPedestrianOne setWorldDelegate:self];
-    [self addToLight:lightPedestrianOne interval:20 andLightStateColor:LightColorRed];
-    [self addToLight:lightPedestrianOne interval:4 andLightStateColor:LightColorLGreen];
-    [self addToLight:lightPedestrianOne interval:1 andLightStateColor:LightColorLGreen  | LightColorBlinking];
+    [self addStateToLight:lightPedestrianOne interval:20 andLightStateColor:LightColorRed];
+    [self addStateToLight:lightPedestrianOne interval:4 andLightStateColor:LightColorLGreen];
+    [self addStateToLight:lightPedestrianOne interval:1 andLightStateColor:LightColorLGreen  | LightColorBlinking];
     
     //adding created Lights to World array
     [[self lightsArray] addObject:lightRoadOne];
@@ -64,12 +59,21 @@
     [[self lightsArray] addObject:lightPedestrianOne];
     
     //Night mode
-    [lightRoadOne setNightLightState:[[DELLightState alloc] initWithInterval:@3 andColor:LightColorYellow | LightColorBlinking]];
-    [lightRoadTwo setNightLightState:[[DELLightState alloc] initWithInterval:@3 andColor:LightColorYellow | LightColorBlinking]];
-    [lightPedestrianOne setNightLightState:[[DELLightState alloc] initWithInterval:@3 andColor:LightColorYellow | LightColorBlinking]];
+    [self setNightStateToLight:lightRoadOne interval:3 andLightStateColor:LightColorYellow | LightColorBlinking];
+    [self setNightStateToLight:lightRoadTwo interval:3 andLightStateColor:LightColorYellow | LightColorBlinking];
+    [self setNightStateToLight:lightPedestrianOne interval:3 andLightStateColor:LightColorOff];
     [lightRoadOne setNightMode:YES];
     [lightRoadTwo setNightMode:YES];
     [lightPedestrianOne setNightMode:YES];
+}
+
+- (void)addStateToLight:(DELLight *)light interval:(NSUInteger)interval andLightStateColor:(LightColor)color  {
+    DELLightState *state = [[DELLightState alloc] initWithInterval:[NSNumber numberWithUnsignedInteger:interval] andColor:color];
+    [[light lightStates] addObject:state];
+}
+
+- (void)setNightStateToLight:(DELLight *)light interval:(NSUInteger)interval andLightStateColor:(LightColor)color {
+    [light setNightLightState:[[DELLightState alloc] initWithInterval:[NSNumber numberWithUnsignedInteger:interval] andColor:color]];
 }
 
 - (void)tickTimeWithInterval:(NSNumber *)interval {
