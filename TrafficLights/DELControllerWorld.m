@@ -35,7 +35,7 @@
     
     //Second Light
     DELLight *lightRoadTwo = [[DELLight alloc] init];
-    [lightRoadTwo setName:@"#1"];
+    [lightRoadTwo setName:@"#2"];
     [lightRoadTwo setWorldDelegate:self];
     [self addStateToLight:lightRoadTwo interval:8 andLightStateColor:LightColorLGreen];
     [self addStateToLight:lightRoadTwo interval:1 andLightStateColor:LightColorLGreen        | LightColorBlinking];
@@ -84,6 +84,11 @@
         [currentLight recieveOneTick];
     }
     
+}
+
+- (void)recieveLightChange:(DELLight *)lightChanged {
+    DebugLog(@"changed object is: %@", lightChanged);
+    [self doUpdateView];
 }
 
 - (void)doUpdateView {

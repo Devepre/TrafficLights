@@ -32,17 +32,17 @@
 - (void)changeStatusToNext {
     void (^invokeWorldDoUpdateView)(void) = ^{
         //        regular way
-        //        SEL worldSelector = @selector(doUpdateView);
-        //        [[self worldDelegate] performSelector:worldSelector withObject:nil];
+        SEL worldSelector = @selector(recieveLightChange:);
+        [[self worldDelegate] performSelector:worldSelector withObject:self];
         
         // pragma block used to ingnore compiler warning about possibly unknown selector
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wundeclared-selector"
-        SEL worldSelector = @selector(doUpdateView);
-        if ([[self worldDelegate] respondsToSelector:worldSelector]) {
-            ((void (*)(id, SEL))[[self worldDelegate] methodForSelector:worldSelector])([self worldDelegate], worldSelector);
-        }
-#pragma clang diagnostic pop
+//#pragma clang diagnostic push
+//#pragma clang diagnostic ignored "-Wundeclared-selector"
+//        SEL worldSelector = @selector(recieveLightChange:);
+//        if ([[self worldDelegate] respondsToSelector:worldSelector]) {
+//            ((void (*)(id, SEL))[[self worldDelegate] methodForSelector:worldSelector])([self worldDelegate], worldSelector);
+//        }
+//#pragma clang diagnostic pop
     };
     
     self.currentTicks = 0;
