@@ -8,7 +8,7 @@
     [self createDefaultLights];
     [self doUpdateView];
     
-    [self performSelector:@selector(tickTimeWithInterval:) withObject:[NSNumber numberWithInteger:1]];
+    [self performSelector:@selector(tickTimeWithInterval:) withObject:[NSNumber numberWithInteger:1] afterDelay:1];
     [[NSRunLoop currentRunLoop] run];
 }
 
@@ -53,6 +53,17 @@
     [[self lightsArray] addObject:lightRoadTwo];
     [[self lightsArray] addObject:lightPedestrian];
     
+    //Night mode
+    //    [lightRoad1 setNightLightColor:LightColorYellow | LightColorBlinking];
+    //    [lightRoadTwo setNightLightColor:LightColorYellow | LightColorBlinking];
+    //    [lightPedestrian setNightLightColor:LightColorOff];
+    [lightRoad1 setNightLightState:[[DELLightState alloc] initWithColor:LightColorYellow | LightColorBlinking andInterval:@3]];
+    [lightRoadTwo setNightLightState:[[DELLightState alloc] initWithColor:LightColorYellow | LightColorBlinking andInterval:@3]];
+    [lightPedestrian setNightLightState:[[DELLightState alloc] initWithColor:LightColorOff andInterval:@3]];
+    
+    [lightRoad1 setNightMode:YES];
+    [lightRoadTwo setNightMode:YES];
+    [lightPedestrian setNightMode:YES];
 }
 
 - (void)tickTimeWithInterval:(NSNumber *)interval {
