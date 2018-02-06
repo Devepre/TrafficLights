@@ -2,6 +2,7 @@
 
 @implementation DELControllerWorld {
     double _timeQuant;
+    DELLightService *_lightService;
 }
 
 //Designated initializer
@@ -19,6 +20,7 @@
 }
 
 - (void)start {
+    _lightService = [[DELLightService alloc] init];
     [self createDefaultLights];
     [self doUpdateView];
     
@@ -33,7 +35,7 @@
     
     //Sending message Tick to all the objects
     for (DELLight *currentLight in self.lightsArray) {
-        [currentLight recieveOneTick];
+        [_lightService recieveOneTickForLight:currentLight];
     }
 }
 
@@ -42,32 +44,33 @@
     DELLight *lightRoadOne = [[DELLight alloc] init];
     [lightRoadOne setName:@"#1"];
     [lightRoadOne setDelegate:self];
-    [lightRoadOne addStateWithInterval:9 andLightStateColor:LightColorRed];
-    [lightRoadOne addStateWithInterval:1 andLightStateColor:LightColorRed         | LightColorYellow];
-    [lightRoadOne addStateWithInterval:8 andLightStateColor:LightColorLGreen];
-    [lightRoadOne addStateWithInterval:1 andLightStateColor:LightColorLGreen      | LightColorBlinking];
-    [lightRoadOne addStateWithInterval:1 andLightStateColor:LightColorYellow];
-    [lightRoadOne addStateWithInterval:5 andLightStateColor:LightColorRed];
+    
+    [_lightService addStateToLight:lightRoadOne withInterval:9 andLightStateColor:LightColorRed];
+    [_lightService addStateToLight:lightRoadOne withInterval:1 andLightStateColor:LightColorRed         | LightColorYellow];
+    [_lightService addStateToLight:lightRoadOne withInterval:8 andLightStateColor:LightColorLGreen];
+    [_lightService addStateToLight:lightRoadOne withInterval:1 andLightStateColor:LightColorLGreen      | LightColorBlinking];
+    [_lightService addStateToLight:lightRoadOne withInterval:1 andLightStateColor:LightColorYellow];
+    [_lightService addStateToLight:lightRoadOne withInterval:5 andLightStateColor:LightColorRed];
     
     //Second Light
     DELLight *lightRoadTwo = [[DELLight alloc] init];
     [lightRoadTwo setName:@"#2"];
     [lightRoadTwo setDelegate:self];
-    [lightRoadTwo addStateWithInterval:8 andLightStateColor:LightColorLGreen];
-    [lightRoadTwo addStateWithInterval:1 andLightStateColor:LightColorLGreen        | LightColorBlinking];
-    [lightRoadTwo addStateWithInterval:1 andLightStateColor:LightColorYellow];
-    [lightRoadTwo addStateWithInterval:9 andLightStateColor:LightColorRed];
-    [lightRoadTwo addStateWithInterval:1 andLightStateColor:LightColorRed           | LightColorYellow];
-    [lightRoadTwo addStateWithInterval:4 andLightStateColor:LightColorRed];
-    [lightRoadTwo addStateWithInterval:1 andLightStateColor:LightColorRed           | LightColorYellow];
+    [_lightService addStateToLight:lightRoadTwo withInterval:8 andLightStateColor:LightColorLGreen];
+    [_lightService addStateToLight:lightRoadTwo withInterval:1 andLightStateColor:LightColorLGreen        | LightColorBlinking];
+    [_lightService addStateToLight:lightRoadTwo withInterval:1 andLightStateColor:LightColorYellow];
+    [_lightService addStateToLight:lightRoadTwo withInterval:9 andLightStateColor:LightColorRed];
+    [_lightService addStateToLight:lightRoadTwo withInterval:1 andLightStateColor:LightColorRed           | LightColorYellow];
+    [_lightService addStateToLight:lightRoadTwo withInterval:4 andLightStateColor:LightColorRed];
+    [_lightService addStateToLight:lightRoadTwo withInterval:1 andLightStateColor:LightColorRed           | LightColorYellow];
     
     //First Pedestrian Light
     DELLight *lightPedestrianOne = [[DELLight alloc] init];
     [lightPedestrianOne setName:@"#3 Pedestrian"];
     [lightPedestrianOne setDelegate:self];
-    [lightPedestrianOne addStateWithInterval:20 andLightStateColor:LightColorRed];
-    [lightPedestrianOne addStateWithInterval:4 andLightStateColor:LightColorLGreen];
-    [lightPedestrianOne addStateWithInterval:1 andLightStateColor:LightColorLGreen  | LightColorBlinking];
+    [_lightService addStateToLight:lightPedestrianOne withInterval:20 andLightStateColor:LightColorRed];
+    [_lightService addStateToLight:lightPedestrianOne withInterval:4 andLightStateColor:LightColorLGreen];
+    [_lightService addStateToLight:lightPedestrianOne withInterval:1 andLightStateColor:LightColorLGreen  | LightColorBlinking];
     
     //adding created Lights to World array
     [[self lightsArray] addObject:lightRoadOne];
@@ -75,12 +78,13 @@
     [[self lightsArray] addObject:lightPedestrianOne];
     
     //Night mode
-    [lightRoadOne setNightStateWithInterval:3 andLightStateColor:LightColorYellow | LightColorBlinking];
-    [lightRoadTwo setNightStateWithInterval:3 andLightStateColor:LightColorYellow | LightColorBlinking];
-    [lightPedestrianOne setNightStateWithInterval:3 andLightStateColor:LightColorOff];
-    [lightRoadOne setNightMode:YES];
-    [lightRoadTwo setNightMode:YES];
-    [lightPedestrianOne setNightMode:YES];
+    [_lightService setNightStateToLight:lightRoadOne withInterval:3 andLightStateColor:LightColorYellow | LightColorBlinking];
+    [_lightService setNightStateToLight:lightRoadTwo withInterval:3 andLightStateColor:LightColorYellow | LightColorBlinking];
+    [_lightService setNightStateToLight:lightPedestrianOne withInterval:3 andLightStateColor:LightColorOff];
+    
+    [_lightService setNightMode:YES forLight:lightRoadOne];
+    [_lightService setNightMode:YES forLight:lightRoadTwo];
+    [_lightService setNightMode:YES forLight:lightPedestrianOne];
 }
 
 - (void)recieveLightChange:(DELLight *)lightChanged {

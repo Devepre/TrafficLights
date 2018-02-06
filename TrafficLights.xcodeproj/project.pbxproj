@@ -11,6 +11,7 @@
 		CE5D8B672020BB85007ED267 /* DELLight.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5D8B662020BB85007ED267 /* DELLight.m */; };
 		CE5D8B6D2020D2BE007ED267 /* DELControllerWorld.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5D8B6C2020D2BE007ED267 /* DELControllerWorld.m */; };
 		CE5D8B732021FA50007ED267 /* DELLightState.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5D8B722021FA50007ED267 /* DELLightState.m */; };
+		CEB8D8622029EB3A009A407C /* DELLightService.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB8D8612029EB3A009A407C /* DELLightService.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -35,6 +36,8 @@
 		CE5D8B712021FA50007ED267 /* DELLightState.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DELLightState.h; sourceTree = "<group>"; };
 		CE5D8B722021FA50007ED267 /* DELLightState.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DELLightState.m; sourceTree = "<group>"; };
 		CEB8D85F2029B928009A407C /* DELLightDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DELLightDelegate.h; sourceTree = "<group>"; };
+		CEB8D8602029EB3A009A407C /* DELLightService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DELLightService.h; sourceTree = "<group>"; };
+		CEB8D8612029EB3A009A407C /* DELLightService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DELLightService.m; sourceTree = "<group>"; };
 		CEDEAA57202499350029E894 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -77,6 +80,8 @@
 				CE5D8B712021FA50007ED267 /* DELLightState.h */,
 				CE5D8B722021FA50007ED267 /* DELLightState.m */,
 				CEDEAA57202499350029E894 /* PrefixHeader.pch */,
+				CEB8D8602029EB3A009A407C /* DELLightService.h */,
+				CEB8D8612029EB3A009A407C /* DELLightService.m */,
 			);
 			path = TrafficLights;
 			sourceTree = "<group>";
@@ -138,6 +143,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEB8D8622029EB3A009A407C /* DELLightService.m in Sources */,
 				CE5D8B572020B288007ED267 /* main.m in Sources */,
 				CE5D8B672020BB85007ED267 /* DELLight.m in Sources */,
 				CE5D8B6D2020D2BE007ED267 /* DELControllerWorld.m in Sources */,
