@@ -14,7 +14,7 @@
 - (void)recieveOneTickForLight:(DELLight *)light {
     DebugLog(@"calling: %s", __func__);
     light.currentTicks++;
-    NSNumber *intervalNumber = [light valueForKey:@"nightMode"] ? [light.nightLightState interval] : [[[light lightStates] objectAtIndex:light.currentStateNumber] interval];
+    NSNumber *intervalNumber = [[light valueForKey:@"nightMode"] boolValue] ? [light.nightLightState interval] : [[[light lightStates] objectAtIndex:light.currentStateNumber] interval];
     if ([intervalNumber integerValue] == light.currentTicks) {
         [self changeStatusToNextForLight:light];
     }
