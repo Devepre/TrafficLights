@@ -5,7 +5,6 @@
 @interface DELControllerWorld : NSObject<DELLightDelegate>
 
 @property (strong, nonatomic) NSMutableArray<DELLight *> *lightsArray;
-//@property (strong, nonatomic) DELLightService *lightService;
 
 - (instancetype)initWithTimeQuant:(double)timeQuant NS_DESIGNATED_INITIALIZER;
 - (instancetype)init;
