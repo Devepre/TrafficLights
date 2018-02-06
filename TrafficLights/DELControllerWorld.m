@@ -25,7 +25,7 @@
     //First Light
     DELLight *lightRoadOne = [[DELLight alloc] init];
     [lightRoadOne setName:@"#1"];
-    [lightRoadOne setWorldDelegate:self];
+    [lightRoadOne setDelegate:self];
     [self addStateToLight:lightRoadOne interval:9 andLightStateColor:LightColorRed];
     [self addStateToLight:lightRoadOne interval:1 andLightStateColor:LightColorRed         | LightColorYellow];
     [self addStateToLight:lightRoadOne interval:8 andLightStateColor:LightColorLGreen];
@@ -36,7 +36,7 @@
     //Second Light
     DELLight *lightRoadTwo = [[DELLight alloc] init];
     [lightRoadTwo setName:@"#2"];
-    [lightRoadTwo setWorldDelegate:self];
+    [lightRoadTwo setDelegate:self];
     [self addStateToLight:lightRoadTwo interval:8 andLightStateColor:LightColorLGreen];
     [self addStateToLight:lightRoadTwo interval:1 andLightStateColor:LightColorLGreen        | LightColorBlinking];
     [self addStateToLight:lightRoadTwo interval:1 andLightStateColor:LightColorYellow];
@@ -48,7 +48,7 @@
     //First Pedestrian Light
     DELLight *lightPedestrianOne = [[DELLight alloc] init];
     [lightPedestrianOne setName:@"#3 Pedestrian"];
-    [lightPedestrianOne setWorldDelegate:self];
+    [lightPedestrianOne setDelegate:self];
     [self addStateToLight:lightPedestrianOne interval:20 andLightStateColor:LightColorRed];
     [self addStateToLight:lightPedestrianOne interval:4 andLightStateColor:LightColorLGreen];
     [self addStateToLight:lightPedestrianOne interval:1 andLightStateColor:LightColorLGreen  | LightColorBlinking];

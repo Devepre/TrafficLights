@@ -12,17 +12,17 @@
 }
 
 - (NSString *)description {
-    NSArray *lightTypeStrings = @[@"off", @"blinking", @"red", @"green", @"yellow", @"custom"];
-    NSMutableArray *enabledNotificationTypes = [[NSMutableArray alloc] init];
+    NSArray *colorTypeStrings = @[@"off", @"blinking", @"red", @"green", @"yellow", @"custom"];
+    NSMutableArray *enabledColorTypes = [[NSMutableArray alloc] init];
     
-    for (NSUInteger i = 0; i < [lightTypeStrings count]; i++) {
+    for (NSUInteger i = 0; i < [colorTypeStrings count]; i++) {
         NSUInteger enumBitValueToCheck = 1 << i;
-        if (self.color & enumBitValueToCheck)
-            [enabledNotificationTypes addObject:[lightTypeStrings objectAtIndex:i]];
+        if ([self color] & enumBitValueToCheck)
+            [enabledColorTypes addObject:[colorTypeStrings objectAtIndex:i]];
     }
     
-    NSString *result = enabledNotificationTypes.count > 0 ?
-    [enabledNotificationTypes componentsJoinedByString:@":"] :
+    NSString *result = enabledColorTypes.count > 0 ?
+    [enabledColorTypes componentsJoinedByString:@":"] :
     @"no options";
     
     return result;

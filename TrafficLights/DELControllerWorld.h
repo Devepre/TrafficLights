@@ -2,6 +2,6 @@
 #import "DELLight.h"
 #import "DELControllerProtocol.h"
 
-@interface DELControllerWorld : NSObject<DELControllerProtocol>
+@interface DELControllerWorld : NSObject<DELControllerProtocol, DELLightDelegate>
 
 @end

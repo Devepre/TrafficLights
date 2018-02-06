@@ -3,14 +3,6 @@
 
 @implementation DELLight
 
-@synthesize name;
-@synthesize nightMode;
-@synthesize nightLightState;
-@synthesize lightStates;
-@synthesize currentStateNumber;
-@synthesize currentTicks;
-@synthesize worldDelegate;
-
 - (instancetype)init
 {
     self = [super init];
@@ -30,37 +22,18 @@
 }
 
 - (void)changeStatusToNext {
-    void (^invokeWorldDoUpdateView)(void) = ^{
-        //        regular way
-        SEL worldSelector = @selector(recieveLightChange:);
-        [[self worldDelegate] performSelector:worldSelector withObject:self];
-        
-        // pragma block used to ingnore compiler warning about possibly unknown selector
-//#pragma clang diagnostic push
-//#pragma clang diagnostic ignored "-Wundeclared-selector"
-//        SEL worldSelector = @selector(recieveLightChange:);
-//        if ([[self worldDelegate] respondsToSelector:worldSelector]) {
-//            ((void (*)(id, SEL))[[self worldDelegate] methodForSelector:worldSelector])([self worldDelegate], worldSelector);
-//        }
-//#pragma clang diagnostic pop
-    };
-    
     self.currentTicks = 0;
     
     if (self.nightMode) {
         [self setNightMode:NO];
         [self setCurrentStateNumber:0];
-        invokeWorldDoUpdateView();
     } else {
         NSUInteger maxStateNumber = [[self lightStates] count];
         maxStateNumber--;
-        if ([self currentStateNumber] <= maxStateNumber) {
-            self.currentStateNumber = [self currentStateNumber] == maxStateNumber ? 0 : ++self.currentStateNumber;
-            invokeWorldDoUpdateView();
-        } else {
-            [self setCurrentStateNumber:0];
-        }
+        self.currentStateNumber = [self currentStateNumber] == maxStateNumber ? 0 : ++self.currentStateNumber;
     }
+    [self.delegate recieveLightChange:self];
+
     DebugLog(@"!_change status_!%@\n", self);
 }
 
