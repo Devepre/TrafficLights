@@ -3,6 +3,7 @@
 
 @interface DELLightService : NSObject
 
+- (DELLight *)createLightWithName:(NSString *)name andDelegate:(id<DELLightDelegate>)delegate ;
 - (void)addStateToLight:(DELLight *)light withInterval:(NSUInteger)interval andLightStateColor:(LightColor)color;
 - (void)setNightStateToLight:(DELLight *)light withInterval:(NSUInteger)interval andLightStateColor:(LightColor)color;
 - (void)recieveOneTickForLight:(DELLight *)light;

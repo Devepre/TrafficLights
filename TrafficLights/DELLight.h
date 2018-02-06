@@ -4,16 +4,14 @@
 
 @interface DELLight : NSObject
 
-@property (strong, nonatomic) NSString *name;
+@property (strong, nonatomic, readonly) NSString *name;
 @property (assign, nonatomic, readonly) BOOL nightMode;
-@property (strong, nonatomic) DELLightState *nightLightState;
-@property (strong, nonatomic) NSMutableArray<DELLightState *> *lightStates;
-@property (assign, nonatomic) NSUInteger currentStateNumber;
-@property (assign, nonatomic) NSUInteger currentTicks;
-@property (weak, nonatomic) id<DELLightDelegate> delegate;
+@property (strong, nonatomic, readonly) DELLightState *nightLightState;
+@property (strong, nonatomic, readonly) NSMutableArray<DELLightState *> *lightStates;
+@property (assign, nonatomic, readonly) NSUInteger currentStateNumber;
+@property (assign, nonatomic, readonly) NSUInteger currentTicks;
+@property (weak, nonatomic, readonly) id<DELLightDelegate> delegate;
 
-- (instancetype)initWithLightsArray:(NSMutableArray<DELLightState *> *)array NS_DESIGNATED_INITIALIZER;
-- (instancetype)init;
-
+- (instancetype)initWithName:(NSString *)name andDelegate:(id<DELLightDelegate>)delegate NS_DESIGNATED_INITIALIZER;
 
 @end

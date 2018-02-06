@@ -79,9 +79,9 @@
 				CE5D8B662020BB85007ED267 /* DELLight.m */,
 				CE5D8B712021FA50007ED267 /* DELLightState.h */,
 				CE5D8B722021FA50007ED267 /* DELLightState.m */,
-				CEDEAA57202499350029E894 /* PrefixHeader.pch */,
 				CEB8D8602029EB3A009A407C /* DELLightService.h */,
 				CEB8D8612029EB3A009A407C /* DELLightService.m */,
+				CEDEAA57202499350029E894 /* PrefixHeader.pch */,
 			);
 			path = TrafficLights;
 			sourceTree = "<group>";

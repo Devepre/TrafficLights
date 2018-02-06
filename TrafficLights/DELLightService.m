@@ -8,12 +8,12 @@
 }
 
 - (void)setNightStateToLight:(DELLight *)light withInterval:(NSUInteger)interval andLightStateColor:(LightColor)color {
-    [light setNightLightState:[[DELLightState alloc] initWithInterval:[NSNumber numberWithUnsignedInteger:interval] andColor:color]];
+    [light setValue:[[DELLightState alloc] initWithInterval:[NSNumber numberWithUnsignedInteger:interval] andColor:color] forKey:@"nightLightState"];
 }
 
 - (void)recieveOneTickForLight:(DELLight *)light {
     DebugLog(@"calling: %s", __func__);
-    light.currentTicks++;
+    [light setValue:[NSNumber numberWithUnsignedInteger:light.currentTicks + 1] forKey:@"currentTicks"];
     NSNumber *intervalNumber = [[light valueForKey:@"nightMode"] boolValue] ? [light.nightLightState interval] : [[[light lightStates] objectAtIndex:light.currentStateNumber] interval];
     if ([intervalNumber integerValue] == light.currentTicks) {
         [self changeStatusToNextForLight:light];
@@ -21,13 +21,17 @@
 }
 
 - (void)changeStatusToNextForLight:(DELLight *)light {
-    light.currentTicks = 0;
+    [light setValue:@0 forKey:@"currentTicks"];
     if ([[light valueForKey:@"nightMode"] boolValue]) {
         [light setValue:@NO forKey:@"nightMode"];
-        [light setCurrentStateNumber:0];
+        [light setValue:@0 forKey:@"currentStateNumber"];
     } else {
         NSUInteger maxStateNumber = [[light lightStates] count];
-        light.currentStateNumber = [light currentStateNumber] == --maxStateNumber ? 0 : ++light.currentStateNumber;
+        if (light.currentStateNumber == -- maxStateNumber) {
+            [light setValue:@0 forKey:@"currentStateNumber"];
+        } else {
+            [light setValue:[NSNumber numberWithUnsignedInteger:light.currentStateNumber + 1] forKey:@"currentStateNumber"];
+        }
     }
     [light.delegate recieveLightChange:light];
     DebugLog(@"!_change status_! to: %@\n", self);
@@ -35,7 +39,11 @@
 
 - (void)setNightMode:(BOOL)nightMode forLight:(DELLight *)light {
     [light setValue:@YES forKey:@"nightMode"];
-//    [light setNightMode:YES];
+}
+
+- (DELLight *)createLightWithName:(NSString *)name andDelegate:(id<DELLightDelegate>)delegate {
+    DELLight *lightNew = [[DELLight alloc] initWithName:name andDelegate:delegate];
+    return lightNew;
 }
 
 @end

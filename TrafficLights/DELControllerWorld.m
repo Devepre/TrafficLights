@@ -41,10 +41,7 @@
 
 - (void)createDefaultLights {
     //First Light
-    DELLight *lightRoadOne = [[DELLight alloc] init];
-    [lightRoadOne setName:@"#1"];
-    [lightRoadOne setDelegate:self];
-    
+    DELLight *lightRoadOne = [_lightService createLightWithName:@"#1" andDelegate:self];
     [_lightService addStateToLight:lightRoadOne withInterval:9 andLightStateColor:LightColorRed];
     [_lightService addStateToLight:lightRoadOne withInterval:1 andLightStateColor:LightColorRed         | LightColorYellow];
     [_lightService addStateToLight:lightRoadOne withInterval:8 andLightStateColor:LightColorLGreen];
@@ -53,9 +50,7 @@
     [_lightService addStateToLight:lightRoadOne withInterval:5 andLightStateColor:LightColorRed];
     
     //Second Light
-    DELLight *lightRoadTwo = [[DELLight alloc] init];
-    [lightRoadTwo setName:@"#2"];
-    [lightRoadTwo setDelegate:self];
+    DELLight *lightRoadTwo = [_lightService createLightWithName:@"#2" andDelegate:self];
     [_lightService addStateToLight:lightRoadTwo withInterval:8 andLightStateColor:LightColorLGreen];
     [_lightService addStateToLight:lightRoadTwo withInterval:1 andLightStateColor:LightColorLGreen        | LightColorBlinking];
     [_lightService addStateToLight:lightRoadTwo withInterval:1 andLightStateColor:LightColorYellow];
@@ -65,9 +60,7 @@
     [_lightService addStateToLight:lightRoadTwo withInterval:1 andLightStateColor:LightColorRed           | LightColorYellow];
     
     //First Pedestrian Light
-    DELLight *lightPedestrianOne = [[DELLight alloc] init];
-    [lightPedestrianOne setName:@"#3 Pedestrian"];
-    [lightPedestrianOne setDelegate:self];
+    DELLight *lightPedestrianOne = [_lightService createLightWithName:@"#3 Pedestrian" andDelegate:self];
     [_lightService addStateToLight:lightPedestrianOne withInterval:20 andLightStateColor:LightColorRed];
     [_lightService addStateToLight:lightPedestrianOne withInterval:4 andLightStateColor:LightColorLGreen];
     [_lightService addStateToLight:lightPedestrianOne withInterval:1 andLightStateColor:LightColorLGreen  | LightColorBlinking];

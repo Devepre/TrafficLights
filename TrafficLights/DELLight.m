@@ -3,16 +3,18 @@
 @implementation DELLight
 
 //Designated initializer
-- (instancetype)initWithLightsArray:(NSMutableArray *)array  {
+- (instancetype)initWithName:(NSString *)name andDelegate:(id<DELLightDelegate>)delegate {
     self = [super init];
     if (self) {
-        _lightStates = array;
+        _delegate = delegate;
+        _name = name;
+        _lightStates = [[NSMutableArray alloc] init];
     }
     return self;
 }
 
 - (instancetype)init {
-    return [self initWithLightsArray:[[NSMutableArray alloc] init]];
+    return [self initWithName:@"Default Name" andDelegate:nil];
 }
 
 - (NSString *)description {
