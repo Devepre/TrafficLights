@@ -4,4 +4,6 @@
 
 @interface DELControllerWorld : NSObject<DELControllerProtocol, DELLightDelegate>
 
+@property (strong, nonatomic) NSMutableArray<id<DELLightProtocol>> *lightsArray;
+
 @end

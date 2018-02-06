@@ -1,6 +1,7 @@
 #import <Foundation/Foundation.h>
 #import "DELLightProtocol.h"
 #import "DELLightDelegate.h"
+#import "DELLightState.h"
 
 @interface DELLight : NSObject<DELLightProtocol>
 
@@ -12,6 +13,8 @@
 @property (assign, nonatomic) NSUInteger currentTicks;
 @property (weak, nonatomic) id <DELLightDelegate> delegate;
 
-- (instancetype)initWithLightsArray:(NSArray *)array;
+- (instancetype)initWithLightsArray:(NSMutableArray *)array;
+- (void)addStateWithInterval:(NSUInteger)interval andLightStateColor:(LightColor)color;
+- (void)setNightStateWithInterval:(NSUInteger)interval andLightStateColor:(LightColor)color;
 
 @end

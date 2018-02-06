@@ -1,5 +1,4 @@
 #import <Foundation/Foundation.h>
-#import "DELLightState.h"
 
 @protocol DELLightProtocol <NSObject>
 

@@ -3,6 +3,7 @@
 
 @implementation DELLight
 
+//designated initializer
 - (instancetype)init
 {
     self = [super init];
@@ -21,20 +22,13 @@
     return self;
 }
 
-- (void)changeStatusToNext {
-    self.currentTicks = 0;
-    
-    if (self.nightMode) {
-        [self setNightMode:NO];
-        [self setCurrentStateNumber:0];
-    } else {
-        NSUInteger maxStateNumber = [[self lightStates] count];
-        maxStateNumber--;
-        self.currentStateNumber = [self currentStateNumber] == maxStateNumber ? 0 : ++self.currentStateNumber;
-    }
-    [self.delegate recieveLightChange:self];
+- (void)addStateWithInterval:(NSUInteger)interval andLightStateColor:(LightColor)color  {
+    DELLightState *state = [[DELLightState alloc] initWithInterval:[NSNumber numberWithUnsignedInteger:interval] andColor:color];
+    [[self lightStates] addObject:state];
+}
 
-    DebugLog(@"!_change status_!%@\n", self);
+- (void)setNightStateWithInterval:(NSUInteger)interval andLightStateColor:(LightColor)color {
+    [self setNightLightState:[[DELLightState alloc] initWithInterval:[NSNumber numberWithUnsignedInteger:interval] andColor:color]];
 }
 
 - (void)recieveOneTick {
@@ -44,7 +38,20 @@
     if ([intervalNumber integerValue] == self.currentTicks) {
         [self changeStatusToNext];
     }
+}
+
+- (void)changeStatusToNext {
+    self.currentTicks = 0;
     
+    if (self.nightMode) {
+        [self setNightMode:NO];
+        [self setCurrentStateNumber:0];
+    } else {
+        NSUInteger maxStateNumber = [[self lightStates] count];
+        self.currentStateNumber = [self currentStateNumber] == --maxStateNumber ? 0 : ++self.currentStateNumber;
+    }
+    [self.delegate recieveLightChange:self];
+    DebugLog(@"!_change status_! to: %@\n", self);
 }
 
 - (NSString *)description {
