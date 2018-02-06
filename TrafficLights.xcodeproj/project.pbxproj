@@ -28,7 +28,6 @@
 /* Begin PBXFileReference section */
 		CE5D8B532020B288007ED267 /* TrafficLights */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TrafficLights; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE5D8B562020B288007ED267 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		CE5D8B642020BB35007ED267 /* DELLightProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DELLightProtocol.h; sourceTree = "<group>"; };
 		CE5D8B652020BB85007ED267 /* DELLight.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DELLight.h; sourceTree = "<group>"; };
 		CE5D8B662020BB85007ED267 /* DELLight.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DELLight.m; sourceTree = "<group>"; };
 		CE5D8B6B2020D2BE007ED267 /* DELControllerWorld.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DELControllerWorld.h; sourceTree = "<group>"; };
@@ -36,7 +35,6 @@
 		CE5D8B712021FA50007ED267 /* DELLightState.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DELLightState.h; sourceTree = "<group>"; };
 		CE5D8B722021FA50007ED267 /* DELLightState.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DELLightState.m; sourceTree = "<group>"; };
 		CEB8D85F2029B928009A407C /* DELLightDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DELLightDelegate.h; sourceTree = "<group>"; };
-		CECD607C202853BE00C7EF1C /* DELControllerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DELControllerProtocol.h; sourceTree = "<group>"; };
 		CEDEAA57202499350029E894 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -70,16 +68,14 @@
 		CE5D8B552020B288007ED267 /* TrafficLights */ = {
 			isa = PBXGroup;
 			children = (
-				CE5D8B642020BB35007ED267 /* DELLightProtocol.h */,
-				CECD607C202853BE00C7EF1C /* DELControllerProtocol.h */,
-				CEB8D85F2029B928009A407C /* DELLightDelegate.h */,
 				CE5D8B562020B288007ED267 /* main.m */,
-				CE5D8B712021FA50007ED267 /* DELLightState.h */,
-				CE5D8B722021FA50007ED267 /* DELLightState.m */,
-				CE5D8B652020BB85007ED267 /* DELLight.h */,
-				CE5D8B662020BB85007ED267 /* DELLight.m */,
 				CE5D8B6B2020D2BE007ED267 /* DELControllerWorld.h */,
 				CE5D8B6C2020D2BE007ED267 /* DELControllerWorld.m */,
+				CEB8D85F2029B928009A407C /* DELLightDelegate.h */,
+				CE5D8B652020BB85007ED267 /* DELLight.h */,
+				CE5D8B662020BB85007ED267 /* DELLight.m */,
+				CE5D8B712021FA50007ED267 /* DELLightState.h */,
+				CE5D8B722021FA50007ED267 /* DELLightState.m */,
 				CEDEAA57202499350029E894 /* PrefixHeader.pch */,
 			);
 			path = TrafficLights;

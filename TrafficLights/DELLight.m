@@ -1,25 +1,18 @@
 #import "DELLight.h"
-#import "DELLightProtocol.h"
 
 @implementation DELLight
 
-//designated initializer
-- (instancetype)init
-{
+//Designated initializer
+- (instancetype)initWithLightsArray:(NSMutableArray *)array  {
     self = [super init];
     if (self) {
-        self.lightStates = [[NSMutableArray alloc] init];
+        _lightStates = array;
     }
     return self;
 }
 
-- (instancetype)initWithLightsArray:(NSMutableArray *)array {
-    self = [super init];
-    if (self) {
-        self = [self init];
-        [self setLightStates:array];
-    }
-    return self;
+- (instancetype)init {
+    return [self initWithLightsArray:[[NSMutableArray alloc] init]];
 }
 
 - (void)addStateWithInterval:(NSUInteger)interval andLightStateColor:(LightColor)color  {

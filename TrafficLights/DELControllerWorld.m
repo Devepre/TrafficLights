@@ -1,14 +1,21 @@
 #import "DELControllerWorld.h"
 
-@implementation DELControllerWorld
+@implementation DELControllerWorld {
+    double _timeQuant;
+}
 
-- (instancetype)init
-{
+//Designated initializer
+- (instancetype)initWithTimeQuant:(double)timeQuant {
     self = [super init];
     if (self) {
         self.lightsArray = [[NSMutableArray alloc] init];
+        _timeQuant = timeQuant;
     }
     return self;
+}
+
+- (instancetype)init {
+    return [self initWithTimeQuant:1];
 }
 
 - (void)start {
@@ -16,7 +23,7 @@
     [self doUpdateView];
     
     //Running the timer
-    [self performSelector:@selector(tickTimeWithInterval:) withObject:[NSNumber numberWithInteger:1] afterDelay:1];
+    [self performSelector:@selector(tickTimeWithInterval:) withObject:[NSNumber numberWithDouble:_timeQuant] afterDelay:_timeQuant];
     [[NSRunLoop currentRunLoop] run];
 }
 
