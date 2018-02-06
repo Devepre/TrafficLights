@@ -12,13 +12,13 @@
 }
 
 - (NSString *)description {
-    NSArray *remoteNotificationTypeStrs = @[@"off", @"blinking", @"red", @"green", @"yellow", @"custom"];
+    NSArray *lightTypeStrings = @[@"off", @"blinking", @"red", @"green", @"yellow", @"custom"];
     NSMutableArray *enabledNotificationTypes = [[NSMutableArray alloc] init];
     
-    for (NSUInteger i = 0; i < [remoteNotificationTypeStrs count]; i++) {
+    for (NSUInteger i = 0; i < [lightTypeStrings count]; i++) {
         NSUInteger enumBitValueToCheck = 1 << i;
         if (self.color & enumBitValueToCheck)
-            [enabledNotificationTypes addObject:[remoteNotificationTypeStrs objectAtIndex:i]];
+            [enabledNotificationTypes addObject:[lightTypeStrings objectAtIndex:i]];
     }
     
     NSString *result = enabledNotificationTypes.count > 0 ?
