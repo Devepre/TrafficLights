@@ -56,9 +56,7 @@
     [lightRoadTwo addStateWithInterval:8 andLightStateColor:LightColorLGreen];
     [lightRoadTwo addStateWithInterval:1 andLightStateColor:LightColorLGreen        | LightColorBlinking];
     [lightRoadTwo addStateWithInterval:1 andLightStateColor:LightColorYellow];
-    [lightRoadTwo addStateWithInterval:9 andLightStateColor:LightColorRed];
-    [lightRoadTwo addStateWithInterval:1 andLightStateColor:LightColorRed           | LightColorYellow];
-    [lightRoadTwo addStateWithInterval:4 andLightStateColor:LightColorRed];
+    [lightRoadTwo addStateWithInterval:14 andLightStateColor:LightColorRed];
     [lightRoadTwo addStateWithInterval:1 andLightStateColor:LightColorRed           | LightColorYellow];
     
     //First Pedestrian Light
@@ -66,8 +64,9 @@
     [lightPedestrianOne setName:@"#3 Pedestrian"];
     [lightPedestrianOne setDelegate:self];
     [lightPedestrianOne addStateWithInterval:20 andLightStateColor:LightColorRed];
-    [lightPedestrianOne addStateWithInterval:4 andLightStateColor:LightColorLGreen];
+    [lightPedestrianOne addStateWithInterval:3 andLightStateColor:LightColorLGreen];
     [lightPedestrianOne addStateWithInterval:1 andLightStateColor:LightColorLGreen  | LightColorBlinking];
+    [lightPedestrianOne addStateWithInterval:1 andLightStateColor:LightColorRed];
     
     //adding created Lights to World array
     [[self lightsArray] addObject:lightRoadOne];
