@@ -47,10 +47,13 @@
     DebugLog(@"!_change status_! to: %@\n", self);
 }
 
-- (NSString *)description {
+- (DELLightState *)getCurrentState {
     DELLightState *currentLightState = self.nightMode ? [self nightLightState] : [[self lightStates] objectAtIndex:[self currentStateNumber]];
-    NSString *currentState = [currentLightState description];
-    NSString *result = [NSString stringWithFormat:@"%@ -> %@", [self name], currentState];
+    return currentLightState;
+}
+
+- (NSString *)description {
+    NSString *result = [NSString stringWithFormat:@"%@ -> %@", [self name], [[self getCurrentState] description]];
     
     return result;
 }
