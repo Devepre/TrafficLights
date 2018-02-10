@@ -54,16 +54,15 @@
     [_lightService addStateToLight:lightRoadTwo withInterval:8 andLightStateColor:LightColorLGreen];
     [_lightService addStateToLight:lightRoadTwo withInterval:1 andLightStateColor:LightColorLGreen        | LightColorBlinking];
     [_lightService addStateToLight:lightRoadTwo withInterval:1 andLightStateColor:LightColorYellow];
-    [_lightService addStateToLight:lightRoadTwo withInterval:9 andLightStateColor:LightColorRed];
-    [_lightService addStateToLight:lightRoadTwo withInterval:1 andLightStateColor:LightColorRed           | LightColorYellow];
-    [_lightService addStateToLight:lightRoadTwo withInterval:4 andLightStateColor:LightColorRed];
+    [_lightService addStateToLight:lightRoadTwo withInterval:14 andLightStateColor:LightColorRed];
     [_lightService addStateToLight:lightRoadTwo withInterval:1 andLightStateColor:LightColorRed           | LightColorYellow];
     
     //First Pedestrian Light
     DELLight *lightPedestrianOne = [_lightService createLightWithName:@"#3 Pedestrian" andDelegate:self];
     [_lightService addStateToLight:lightPedestrianOne withInterval:20 andLightStateColor:LightColorRed];
-    [_lightService addStateToLight:lightPedestrianOne withInterval:4 andLightStateColor:LightColorLGreen];
+    [_lightService addStateToLight:lightPedestrianOne withInterval:3 andLightStateColor:LightColorLGreen];
     [_lightService addStateToLight:lightPedestrianOne withInterval:1 andLightStateColor:LightColorLGreen  | LightColorBlinking];
+    [_lightService addStateToLight:lightPedestrianOne withInterval:1 andLightStateColor:LightColorRed];
     
     //adding created Lights to World array
     [[self lightsArray] addObject:lightRoadOne];
