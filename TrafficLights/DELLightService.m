@@ -46,4 +46,15 @@
     return lightNew;
 }
 
+- (DELLightState *)getCurrentStateForLight:(DELLight *)light {
+    DELLightState *currentLightState = light.nightMode ? [light nightLightState] : [[light lightStates] objectAtIndex:[light currentStateNumber]];
+    return currentLightState;
+}
+
+- (NSString *)descriptionForLight:(DELLight *)light {
+    NSString *result = [NSString stringWithFormat:@"%@ -> %@", [light name], [[self getCurrentStateForLight:light] description]];
+    
+    return result;
+}
+
 @end

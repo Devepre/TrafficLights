@@ -17,12 +17,4 @@
     return [self initWithName:@"Default Name" andDelegate:nil];
 }
 
-- (NSString *)description {
-    DELLightState *currentLightState = self.nightMode ? [self nightLightState] : [[self lightStates] objectAtIndex:[self currentStateNumber]];
-    NSString *currentState = [currentLightState description];
-    NSString *result = [NSString stringWithFormat:@"%@ -> %@", [self name], currentState];
-    
-    return result;
-}
-
 @end

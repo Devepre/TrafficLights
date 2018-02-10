@@ -95,7 +95,7 @@
 - (NSString *)description {
     NSMutableString *arrayDescription = [[NSMutableString alloc] init];
     for (DELLight *currentLight in self.lightsArray) {
-        [arrayDescription appendString:[currentLight description]];
+        [arrayDescription appendString:[_lightService descriptionForLight:currentLight]];
         [arrayDescription appendString:@"\n"];
     }
     

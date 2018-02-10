@@ -9,5 +9,7 @@
 - (void)recieveOneTickForLight:(DELLight *)light;
 - (void)changeStatusToNextForLight:(DELLight *)light;
 - (void)setNightMode:(BOOL)nightMode forLight:(DELLight *)light;
+- (DELLightState *)getCurrentStateForLight:(DELLight *)light;
+- (NSString *)descriptionForLight:(DELLight *)light;
 
 @end
